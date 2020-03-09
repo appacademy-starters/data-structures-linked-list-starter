@@ -1,4 +1,4 @@
-# Bubble Sort
+# Linked List
 
 This project contains a skeleton for you to implement a linked list. This is a
 test-driven project. Run the tests and read the top-most error. If it's not
