@@ -294,7 +294,7 @@ describe('LinkedList', () => {
                 linkedList.addToTail('A');
                 linkedList.addToTail('B');
                 linkedList.addToTail('C');
-                expect(linkedList.insert(3, 'D')).to.equal(false);
+                expect(linkedList.insert(4, 'D')).to.equal(false);
             });
 
             it('Should return true if node is successfully inserted at index', () => {
