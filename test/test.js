@@ -42,20 +42,10 @@ describe('LinkedList', () => {
             expect(linkedList).to.have.property('length');
         });
 
-        it('Should always keep track of the length of the list', () => {
-            expect(linkedList.length).to.equal(0);
-            linkedList.addToTail('C');
-            expect(linkedList.length).to.equal(1);
-            linkedList.addToHead('A');
-            expect(linkedList.length).to.equal(2);
-            linkedList.insert(1, 'B');
-            expect(linkedList.length).to.equal(3);
-            linkedList.remove(1);
-            expect(linkedList.length).to.equal(2);
-            linkedList.removeTail();
-            expect(linkedList.length).to.equal(1);
-            linkedList.removeHead();
-            expect(linkedList.length).to.equal(0);
+        it('Should not implement an Array to store values', () => {
+            for (let property in linkedList) {
+                expect(Array.isArray(linkedList[property])).to.equal(false);
+            }
         });
     });
 
@@ -122,6 +112,14 @@ describe('LinkedList', () => {
                 expect(linkedList.tail.value).to.equal('A');
             });
 
+            it('Should reassign both the head and tail pointers to null when tail is removed from a list of only one node', () => {
+                linkedList.addToTail('A');
+                expect(linkedList.length).to.equal(1);
+                linkedList.removeTail();
+                expect(linkedList.head).to.equal(null);
+                expect(linkedList.tail).to.equal(null);
+            });
+
             it('Should reassign the new tail\'s next pointer to null', () => {
                 linkedList.addToTail('A');
                 linkedList.addToTail('B');
@@ -139,14 +137,6 @@ describe('LinkedList', () => {
                 expect(linkedList.length).to.equal(1);
                 linkedList.removeTail();
                 expect(linkedList.length).to.equal(0);
-            });
-
-            it('Should reassign both the head and tail pointers to null when tail is removed from a list of only one node', () => {
-                linkedList.addToTail('A');
-                expect(linkedList.length).to.equal(1);
-                linkedList.removeTail();
-                expect(linkedList.head).to.equal(null);
-                expect(linkedList.tail).to.equal(null);
             });
 
             it('Should return the removed tail node when removeTail is called', () => {
@@ -363,6 +353,22 @@ describe('LinkedList', () => {
                 expect(linkedList.size()).to.equal(2);
                 linkedList.removeTail();
                 expect(linkedList.size()).to.equal(1);
+            });
+            it('Should always keep track of the length of the list', () => {
+                // you'll need to build all other methods before this passes.
+                expect(linkedList.length).to.equal(0);
+                linkedList.addToTail('C');
+                expect(linkedList.length).to.equal(1);
+                linkedList.addToHead('A');
+                expect(linkedList.length).to.equal(2);
+                linkedList.insert(1, 'B');
+                expect(linkedList.length).to.equal(3);
+                linkedList.remove(1);
+                expect(linkedList.length).to.equal(2);
+                linkedList.removeTail();
+                expect(linkedList.length).to.equal(1);
+                linkedList.removeHead();
+                expect(linkedList.length).to.equal(0);
             });
         });
     });
